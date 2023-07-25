@@ -13,11 +13,11 @@ class MinimalPublisher : public rclcpp::Node
     MinimalPublisher()
     : Node("publisher"), _count(0)
     {
-      int n = 2;
+      const uint16_t c_time_interval_sec = 2;
       using namespace std::chrono_literals;
-      _publisher = this->create_publisher<std_msgs::msg::String>("topic", 10);
+      _publisher = this->create_publisher<std_msgs::msg::String>("publisher", 10);
       timer = this->create_wall_timer(
-      n * 1s, std::bind(&MinimalPublisher::timerCallback, this));
+      c_time_interval_sec * 1s, std::bind(&MinimalPublisher::timerCallback, this));
     }
 
   private:
