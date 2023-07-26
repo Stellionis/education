@@ -6,7 +6,6 @@
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
 
-
 class MinimalPublisher : public rclcpp::Node
 {
   public:
@@ -19,7 +18,7 @@ class MinimalPublisher : public rclcpp::Node
     {
       using namespace std::chrono;
       _publisher = this->create_publisher<std_msgs::msg::String>(c_topic, c_queue_size);
-      timer = this->create_wall_timer(
+      _ptimer = this->create_wall_timer(
       _time_interval_sec * 1s, std::bind(&MinimalPublisher::timerCallback, this));
     }
 
@@ -32,7 +31,7 @@ class MinimalPublisher : public rclcpp::Node
       RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
       _publisher->publish(message);
     }
-    rclcpp::TimerBase::SharedPtr timer;
+    rclcpp::TimerBase::SharedPtr _ptimer;
     rclcpp::Publisher<std_msgs::msg::String>::SharedPtr _publisher;
     size_t _count;
 };
