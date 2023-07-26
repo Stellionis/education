@@ -10,17 +10,17 @@
 class MinimalPublisher : public rclcpp::Node
 {
   public:
-    static const char c_topic = "publisher"
-    static const uint8_t c_queue_size = 10
+    static constexpr char* c_topic = "publisher";
+    static const uint8_t c_queue_size = 10;
     const uint8_t _time_interval_sec = 2;
 
     MinimalPublisher()
     : Node("publisher"), _count(0)
     {
-      using namespace std::chrono::seconds;
+      using namespace std::chrono;
       _publisher = this->create_publisher<std_msgs::msg::String>(c_topic, c_queue_size);
       timer = this->create_wall_timer(
-      c_time_interval_sec * 1s, std::bind(&MinimalPublisher::timerCallback, this));
+      _time_interval_sec * 1s, std::bind(&MinimalPublisher::timerCallback, this));
     }
 
   private:
