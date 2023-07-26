@@ -17,7 +17,7 @@ class MinimalPublisher : public rclcpp::Node
     : Node("publisher"), _count(0)
     {
       using namespace std::chrono;
-      _publisher = this->create_publisher<std_msgs::msg::String>(c_topic, c_queue_size);
+      _ppublisher = this->create_publisher<std_msgs::msg::String>(c_topic, c_queue_size);
       _ptimer = this->create_wall_timer(
       _time_interval_sec * 1s, std::bind(&MinimalPublisher::timerCallback, this));
     }
@@ -29,10 +29,10 @@ class MinimalPublisher : public rclcpp::Node
       auto message = std_msgs::msg::String();
       message.data = "Hello, I'm alive!" + std::to_string(_count++);
       RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
-      _publisher->publish(message);
+      _ppublisher->publish(message);
     }
     rclcpp::TimerBase::SharedPtr _ptimer;
-    rclcpp::Publisher<std_msgs::msg::String>::SharedPtr _publisher;
+    rclcpp::Publisher<std_msgs::msg::String>::SharedPtr _ppublisher;
     size_t _count;
 };
 
