@@ -26,9 +26,11 @@ class MinimalPublisher : public rclcpp::Node
     {
       auto message = std_msgs::msg::String();
       message.data = "Hello, I'm alive!" + std::to_string(_count++);
-      RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
+      RCLCPP_INFO(this->get_logger(), message.data.c_str());
       _ppublisher->publish(message);
     }
+    
+  private:
     rclcpp::TimerBase::SharedPtr _ptimer;
     rclcpp::Publisher<std_msgs::msg::String>::SharedPtr _ppublisher;
     size_t _count;
