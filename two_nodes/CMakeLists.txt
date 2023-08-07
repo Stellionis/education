@@ -25,6 +25,10 @@ target_compile_features(sub PUBLIC c_std_99 cxx_std_17)
 install(TARGETS 
   pub
   sub
-  DESTINATION lib/${PROJECT_NAME})
-
+  DESTINATION lib/${PROJECT_NAME}
+  )
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}/
+)
 ament_package()
