@@ -8,11 +8,11 @@
 #include "std_msgs/msg/string.hpp"
 #include "std_msgs/msg/int16.hpp"
 
-static constexpr char * c_pub_topic = "publisher";  
+static constexpr char * c_pub_topic = "publisher";
 static constexpr char * c_sub_topic = "subscriber";
 
 static constexpr char * c_time_interval_param_sec = "timer_polling_frequency";
-static const uint8_t  с_timer_interval_param_value = 2;
+static const uint8_t с_timer_interval_param_value = 2;
 
 static constexpr char * c_queue_size_param = "queue_size";
 static const uint8_t c_queue_size = 10;

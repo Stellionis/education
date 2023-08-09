@@ -5,7 +5,7 @@
 #include "std_msgs/msg/string.hpp"
 #include "std_msgs/msg/int16.hpp"
 
-static constexpr char * c_pub_topic = "publisher";  
+static constexpr char * c_pub_topic = "publisher";
 static constexpr char * c_sub_topic = "subscriber";
 
 static constexpr char * c_queue_size_param = "queue_size";
