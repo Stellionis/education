@@ -1,11 +1,14 @@
 #include <memory>
 #include <iostream>
+
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
 #include "std_msgs/msg/int16.hpp"
 
-static constexpr char * c_topic = "publisher";
-static constexpr char * c_subtopic = "subscriber";
+static constexpr char * c_pub_topic = "publisher";  
+static constexpr char * c_sub_topic = "subscriber";
+
+static constexpr char * c_queue_size_param = "queue_size";
 static const uint8_t c_queue_size = 10;
 
 class MinimalSubscriber : public rclcpp::Node
@@ -14,10 +17,13 @@ public:
   MinimalSubscriber()
   : Node("subscriber")
   {
+    this->declare_parameter(c_queue_size_param, c_queue_size);
+    uint8_t queue_size = this->get_parameter(c_queue_size_param).as_int();
+
     _psubscription = this->create_subscription<std_msgs::msg::String>(
-      c_topic, c_queue_size,
+      c_pub_topic, queue_size,
       std::bind(&MinimalSubscriber::topicCallback, this, std::placeholders::_1));
-    _ppublisher = this->create_publisher<std_msgs::msg::Int16>(c_subtopic, c_queue_size);
+    _ppublisher = this->create_publisher<std_msgs::msg::Int16>(c_sub_topic, queue_size);
   }
 
 private:
