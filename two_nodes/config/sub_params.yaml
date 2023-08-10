@@ -1,0 +1,3 @@
+subscriber:
+  ros__parameters:
+    queue_size: 10
