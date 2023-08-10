@@ -1,0 +1,4 @@
+publisher:
+  ros__parameters:
+    timer_polling_frequency: 5
+    queue_size: 10

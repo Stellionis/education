@@ -9,6 +9,7 @@ def generate_launch_description():
         launch_ros.actions.Node(
             package='two_nodes',
             executable='pub',
+            name='publisher',
             parameters=[os.path.join(get_package_share_directory
             ('two_nodes'), 'config', 'pub_params.yaml')],
             output="screen",
@@ -17,6 +18,7 @@ def generate_launch_description():
         launch_ros.actions.Node(
             package='two_nodes',
             executable='sub',
+            name='subscriber',
             parameters=[os.path.join(get_package_share_directory
             ('two_nodes'), 'config', 'sub_params.yaml')],
             output="screen",
